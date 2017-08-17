@@ -56,11 +56,26 @@ export default class MyOrder extends Component {
     })
   }
 
-  handleSubmit = () =>{
-    this.state.cart.pop()
-    Actions.menu()
+  /*handleSubmit = () =>{
+    var data = []
+    while (this.state.cart.length) {
+      data = this.state.cart.pop();
+      console.log(data)
+      fetch(Url.cartItem, {  
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      }).then(function(){
+        Actions.menu()
+        console.log(this.state.cart,'remove inside fetch')
+      })
+      console.log(this.state.cart,'remove outside fetch')
+    }   
   }
-
+*/
   cartItemRender() {
     let _this =this;
     return _this.state.cart.map((c,i) => {
@@ -106,7 +121,7 @@ export default class MyOrder extends Component {
           </View>
         </View>
 
-        <TouchableHighlight style={styles.button} onPress={this.handleSubmit}
+        <TouchableHighlight style={styles.button} onPress={() => Actions.menu()}
            underlayColor='midnightblue'>
             <Text style={styles.btnText}>
               Done

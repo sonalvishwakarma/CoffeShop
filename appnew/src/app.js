@@ -11,7 +11,7 @@ export default class App extends Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="main" component={Main} hideNavBar initial/>
+          <Scene key="main" component={Main} hideNavBar initial />
           <Scene key="menu" component={Menu} hideNavBar />
           <Scene key="cart" component={Cart} hideNavBar />
           <Scene key="checkout" component={Checkout} hideNavBar />
