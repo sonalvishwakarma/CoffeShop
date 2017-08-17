@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet, TextInput,Text,View,Image,TouchableHighlight,ScrollView,TouchableWithoutFeedback} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Url from '../constant/constants';
-
-var cartItem = 'https://api.myjson.com/bins/11pwjd'
+import styles from '../styles/style';
 
 export default class Menu extends Component {
 
@@ -29,7 +28,7 @@ export default class Menu extends Component {
   }
 
   handleAddToCart = (selectedItem) => {
-    fetch(cartItem)
+    fetch(Url.cartItem)
     .then( (response) => {
       console.log(response,'res')
       return response.json()
@@ -51,7 +50,7 @@ export default class Menu extends Component {
           Quantity : selectedItem.Quantity,
         }
         json.push(product);
-        fetch(cartItem, {  
+        fetch(Url.cartItem, {  
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -81,13 +80,13 @@ export default class Menu extends Component {
             </View>
             <View style={{justifyContent : 'flex-end',  width : 180}}>
               <TouchableHighlight>
-                <Text style={styles.text}>{v.Item}</Text>
+                <Text style={styles.mainText}>{v.Item}</Text>
               </TouchableHighlight>
                <TouchableHighlight>
-                <Text style={styles.text}>{v.Price}</Text>
+                <Text style={styles.mainText}>{v.Price}</Text>
               </TouchableHighlight>
-              <TouchableHighlight style={styles.button} onPress = {() => _this.handleAddToCart(v) } underlayColor='midnightblue'>
-                <Text style={styles.btnText}>
+              <TouchableHighlight style={styles.menubutton} onPress = {() => _this.handleAddToCart(v) } underlayColor='midnightblue'>
+                <Text style={styles.menubtnText}>
                   add to cart
                 </Text>
               </TouchableHighlight>
@@ -100,7 +99,7 @@ export default class Menu extends Component {
 
   render() {            
     return (
-      <View style={styles.container}>
+      <View style={styles.maincontainer}>
         <View>
           <TextInput underlineColorAndroid='transparent'
             autoCapitalize = 'none'
@@ -118,59 +117,4 @@ export default class Menu extends Component {
   }
 }
 
-const styles = StyleSheet.create ({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: undefined,
-    height: undefined,
-    backgroundColor:'#cd853f',
-  },
-  serchInput: {
-    flexDirection : 'row',
-    marginTop: 10,
-    marginBottom: 5,
-    height: 50,
-    width: 330,
-    borderColor: 'gray',
-    borderWidth: 5,
-    borderRadius : 10,
-    color: 'black',
-    backgroundColor:'white',
-    fontSize : 18,
-    paddingLeft:10,
-    alignItems: 'stretch',
-  },
-  text : {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 5,
-    color: '#0B5351',
-  },
-  button : {
-    backgroundColor: '#D3D3D3',
-    margin:10,
-    width : 130,
-  },
-  btnText: {
-    fontSize: 15,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-  item : {
-    flex : 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    height : 150,
-    width : 340,
-    margin : 5,
-    borderWidth : 1,
-    borderRadius : 10,
-    borderColor: '#D3D3D3',
-    backgroundColor : 'white'
-  },
-
-})
 

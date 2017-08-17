@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {StyleSheet,ScrollView,Text,TextInput,View,TouchableHighlight, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
-var itemsCart = 'https://api.myjson.com/bins/zzg2x';
+import Url from '../constant/constants';
+import styles from '../styles/style';
 
 export default class MyOrder extends Component {
 
@@ -20,11 +20,12 @@ export default class MyOrder extends Component {
       contactn : '',
       address : ''
     }
-    this.getItemsCart();
   }
 
   componentDidMount(){
-     var orderIDNumber = (new Date().getTime()).toString(36).toUpperCase()
+    this.getItemsCart();
+
+    var orderIDNumber = (new Date().getTime()).toString(36).toUpperCase()
     this.setState({orderID : orderIDNumber})
     AsyncStorage.getItem('fname').then((value) => {
       this.setState({name : JSON.parse(value)})
@@ -38,7 +39,7 @@ export default class MyOrder extends Component {
   }
 
   getItemsCart(){
-    fetch(itemsCart)
+    fetch(Url.cartItem)
     .then( (response) => {
       return response.json()
     })   
@@ -70,7 +71,7 @@ export default class MyOrder extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.orderContainer}>
         <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
           <View style={styles.userDetailsView}>
             <Text style={styles.text}>OrderNumber - {this.state.orderID}</Text>
@@ -107,57 +108,3 @@ export default class MyOrder extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create ({
- container: {
-    flex:1,
-    flexDirection:'column',
-    backgroundColor: '#cd853f',
-    justifyContent:'flex-start',
-  },
-  button : {
-    backgroundColor: '#D3D3D3',
-    margin:5,
-  },
-  btnText: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-  loginInput: {
-    flexDirection : 'row',
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 10,
-    marginBottom: 5,
-    height: 50,
-    borderColor: 'white',
-    borderWidth: 1,
-    color: 'gray',
-    backgroundColor:'white',
-    fontSize : 18,
-    paddingLeft:10,
-    alignItems: 'stretch',
-  },
-  view2: {
-    backgroundColor: '#0B5351',
-    height: 4,
-  },
-  text : {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-  userDetailsView : {
-    backgroundColor: 'white',
-  },
-  textIn : {
-    fontSize: 17,
-    textAlign: 'center',
-    color: '#0B5351',
-    width : 50,
-  },
-
-})

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {StyleSheet,TextInput,Text,View,Image,TouchableHighlight, ScrollView} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Delete from '../img/del1.png';
-
-var cartItem = 'https://api.myjson.com/bins/11pwjd'
+import Url from '../constant/constants';
+import styles from '../styles/style';
 
 export default class Cart extends Component {
 
@@ -23,7 +23,7 @@ export default class Cart extends Component {
   }
 
   getItemsCart = () => {
-    fetch(cartItem)
+    fetch(Url.cartItem)
     .then((response) => {
       return response.json()
     })   
@@ -36,21 +36,12 @@ export default class Cart extends Component {
     })
   }
   
-  /*HandleQuantity(q, item){
-    this.setState({Quantity: q})
-     var total = 0;
-      this.state.cart.map((car) => {
-        total = total + parseInt(car.Price) * this.state.Quantity;
-      })
-    this.setState({grandTotal : total, Quantity: q})
-  }*/
-  
   removeCartItem (ca){
     this.state.cart.forEach((car, index) => {
       var data = []
       if(car.CartId === ca.CartId){
       data = this.state.cart.splice(index, 1) ;
-      fetch(cartItem, {  
+      fetch(Url.cartItem, {  
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -72,17 +63,9 @@ export default class Cart extends Component {
         <View key={c.CartId}>
             <View style={{justifyContent : 'flex-start'}}>
               <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
-                <Text style={styles.text}>{c.ItemName}</Text>
-                <Text style={styles.text}>{ c.Price}</Text>
-                {/*<View style={{flexDirection : 'row'}}>
-                  <TextInput style={styles.textIn} 
-                    underlineColorAndroid='transparent'
-                    autoCapitalize = 'none'
-                    value={_this.state.Quantity}
-                    onChangeText={(Quantity) => _this.HandleQuantity(Quantity)}
-                  />
-                </View>*/}
-                <Text style={styles.text}>{ c.Quantity}</Text>
+                <Text style={styles.carttext}>{c.ItemName}</Text>
+                <Text style={styles.carttext}>{ c.Price}</Text>
+                <Text style={styles.carttext}>{ c.Quantity}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
                   <TouchableHighlight underlayColor='midnightblue' onPress={() => this.removeCartItem(c)}>
                     <Image source={Delete} style={{height : 25, width : 25}}/>     
@@ -97,20 +80,20 @@ export default class Cart extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.cartcontainer}>
         <View style={{justifyContent : 'flex-start'}}>
           <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
-            <Text style={styles.text}>Item</Text>
-            <Text style={styles.text}>Price</Text>
+            <Text style={styles.carttext}>Item</Text>
+            <Text style={styles.carttext}>Price</Text>
             <View style={{flexDirection : 'row'}}>
-              <Text style={styles.text}>Quantity</Text>
+              <Text style={styles.carttext}>Quantity</Text>
             </View>
           </View>
           <View>
           {this.cartItemRender()}
           <View>
             <View style={styles.view2}></View>
-            <Text style={styles.text}>Grand Total :{this.state.grandTotal}</Text>
+            <Text style={styles.carttext}>Grand Total :{this.state.grandTotal}</Text>
           </View>
           </View>
         </View> 
@@ -132,43 +115,4 @@ export default class Cart extends Component {
   }
 }
 
-const styles = StyleSheet.create ({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    width: undefined,
-    height: undefined,
-    backgroundColor:'#cd853f',
-  },
-  view2: {
-    backgroundColor: '#0B5351',
-    height: 4,
-  },
-  text : {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-  textIn : {
-    fontSize: 17,
-    textAlign: 'center',
-    color: '#0B5351',
-    width : 50
-  },
-   button : {
-    backgroundColor: '#D3D3D3',
-    margin:5
-  },
-  delBtn : {
-    backgroundColor: 'transparent',
-    color : '#0B5351',
-  },
-  btnText: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-})
 

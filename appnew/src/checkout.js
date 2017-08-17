@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {StyleSheet,ScrollView,Text,TextInput,View,TouchableHighlight, AsyncStorage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import styles from '../styles/style';
 
 export default class Checkout extends Component {
 
@@ -13,6 +14,10 @@ export default class Checkout extends Component {
       email: '',
       address : '',
     };
+  }
+
+  componentWillUnmount(){
+    Actions.pop()
   }
 
   handleFirstName = (text) => {
@@ -35,9 +40,19 @@ export default class Checkout extends Component {
     AsyncStorage.setItem('address', JSON.stringify(text));
   }
 
+  handleSubmit = () => {
+    if(this.state.fname !== "" || this.state.contactno !== "" || this.state.email !== "" || this.state.address !== "" )
+    {
+      Actions.myorder()
+    }
+    else {
+      alert('please fill the all fields')
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.checkoutcontainer}>
         <View>
           <TextInput underlineColorAndroid='transparent'
             autoCapitalize = 'none'
@@ -52,7 +67,7 @@ export default class Checkout extends Component {
             maxLength={10}
             keyboardType = 'numeric'               
             style = {styles.textInputView}
-             value={this.state.contactno}
+            value={this.state.contactno}
             onChangeText= {this.handleContact}
           />
           <TextInput underlineColorAndroid='transparent'
@@ -71,7 +86,7 @@ export default class Checkout extends Component {
           />
         </View>
         <View>
-          <TouchableHighlight style={styles.button} onPress={ () => Actions.myorder()}
+          <TouchableHighlight style={styles.button} onPress={this.handleSubmit}
            underlayColor='midnightblue'>
             <Text style={styles.btnText}>
               Next
@@ -82,55 +97,4 @@ export default class Checkout extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create ({
-  container: {
-    flex:1,
-    flexDirection:'column',
-    backgroundColor: '#cd853f',
-    justifyContent:'flex-start',
-  },
-    button : {
-    backgroundColor: '#D3D3D3',
-    margin:5
-  },
-  btnText: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-  textInputView: {
-    flexDirection : 'row',
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 10,
-    marginBottom: 5,
-    height: 50,
-    borderColor: 'white',
-    borderWidth: 1,
-    color: 'gray',
-    backgroundColor:'white',
-    fontSize : 18,
-    paddingLeft:10,
-    alignItems: 'stretch',
-  },
-  view2: {
-    backgroundColor: '#0B5351',
-    height: 4,
-  },
-  text : {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
-  textIn : {
-    fontSize: 17,
-    textAlign: 'center',
-    color: '#0B5351',
-    width : 50
-  },
-
-})
 

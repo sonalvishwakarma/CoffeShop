@@ -13,7 +13,7 @@ export default class App extends Component {
         <Scene key="root">
           <Scene key="main" component={Main} hideNavBar initial/>
           <Scene key="menu" component={Menu} hideNavBar />
-          <Scene key="cart" component={Cart} hideNavBar/>
+          <Scene key="cart" component={Cart} hideNavBar />
           <Scene key="checkout" component={Checkout} hideNavBar/>
           <Scene key="myorder" component={MyOrder} hideNavBar/>
         </Scene>
