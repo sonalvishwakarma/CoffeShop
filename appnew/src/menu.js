@@ -17,6 +17,10 @@ export default class Menu extends Component {
     this.getItems()
   }
 
+  componentWillUnmount(){
+    Actions.pop()
+  }
+
   getItems = () => {
     fetch(Url.Items)
     .then((response) => {

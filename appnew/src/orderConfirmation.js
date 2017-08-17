@@ -38,6 +38,10 @@ export default class MyOrder extends Component {
     });
   }
 
+  componentWillUnmount(){
+    Actions.pop()
+  }
+
   getItemsCart(){
     fetch(Url.cartItem)
     .then( (response) => {
@@ -50,6 +54,11 @@ export default class MyOrder extends Component {
       })
       this.setState({cart: json, grandTotal : total})
     })
+  }
+
+  handleSubmit = () =>{
+    this.state.cart.pop()
+    Actions.menu()
   }
 
   cartItemRender() {
@@ -98,7 +107,7 @@ export default class MyOrder extends Component {
           </View>
         </View>
 
-        <TouchableHighlight style={styles.button} onPress={ () => Actions.menu()}
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit}
            underlayColor='midnightblue'>
             <Text style={styles.btnText}>
               Done

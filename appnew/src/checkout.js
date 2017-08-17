@@ -16,10 +16,6 @@ export default class Checkout extends Component {
     };
   }
 
-  componentWillUnmount(){
-    Actions.pop()
-  }
-
   handleFirstName = (text) => {
     this.setState({fname : text})
     AsyncStorage.setItem('fname', JSON.stringify(text));

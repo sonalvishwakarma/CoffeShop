@@ -5,7 +5,7 @@ import styles from '../styles/style';
 
 export default class Main extends Component {
 
- render() {
+  render() {
     return (
       <View style={styles.maincontainer}>
         <View>
