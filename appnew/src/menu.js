@@ -3,6 +3,8 @@ import {StyleSheet, TextInput,Text,View,Image,TouchableHighlight,ScrollView,Touc
 import { Actions } from 'react-native-router-flux';
 import Url from '../constant/constants';
 
+var cartItem = 'https://api.myjson.com/bins/11pwjd'
+
 export default class Menu extends Component {
 
   constructor(props){
@@ -23,20 +25,17 @@ export default class Menu extends Component {
     })   
     .then((json) => {
       this.setState({ items : json})
-      console.log(this.state.items, 'items')
     })
   }
 
-  /*handleCart () => {
-    
-  }*/
-
   handleAddToCart = (selectedItem) => {
-    fetch(Url.cartItem)
+    fetch(cartItem)
     .then( (response) => {
+      console.log(response,'res')
       return response.json()
-    })   
+    })
     .then( (json) => {
+      console.log(json, 'json')
       var prodID = json.find((pID) => {
         return pID.ID === selectedItem.ID;
       })
@@ -52,7 +51,7 @@ export default class Menu extends Component {
           Quantity : selectedItem.Quantity,
         }
         json.push(product);
-        fetch(Url.cartItem, {  
+        fetch(cartItem, {  
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -60,10 +59,10 @@ export default class Menu extends Component {
           },
           body: JSON.stringify(json)
         }).then((res) => {
-          return res.json()
+            return res.json()
           .then((json) => {
-           console.log(json)
-           Actions.cart()
+            console.log(json)
+            Actions.cart()
             alert("Successfully added item")
           })
         })
@@ -73,9 +72,8 @@ export default class Menu extends Component {
 
   getItemsRender =() =>{
     let _this =this;
-   return _this.state.items.map(function(v,i) {
-      var img = v.Image
-     return(
+    return _this.state.items.map(function(v,i) {
+      return(
         <View style={styles.item} key={i}>
           <View style={{flexDirection : "row"}}>
             <View style={{justifyContent : 'flex-start',  width : 160}}>

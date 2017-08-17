@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {StyleSheet,TextInput,Text,View,Image,TouchableHighlight, ScrollView} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Delete from '../img/del1.png';
-import Url from '../constant/constants';
+
+var cartItem = 'https://api.myjson.com/bins/11pwjd'
 
 export default class Cart extends Component {
 
@@ -22,7 +23,7 @@ export default class Cart extends Component {
   }
 
   getItemsCart = () => {
-    fetch(Url.Items)
+    fetch(cartItem)
     .then((response) => {
       return response.json()
     })   
@@ -45,12 +46,11 @@ export default class Cart extends Component {
   }*/
   
   removeCartItem (ca){
-    console.log(this.state.cart, 'getting')
     this.state.cart.forEach((car, index) => {
       var data = []
       if(car.CartId === ca.CartId){
       data = this.state.cart.splice(index, 1) ;
-      fetch(Url.cartItem, {  
+      fetch(cartItem, {  
         method: 'PUT',
         headers: {
           'Accept': 'application/json',

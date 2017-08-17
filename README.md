@@ -1,6 +1,6 @@
-# CoffeShop
+# CoffeeShop
 
-1 . `Project`
+1 . `Project` CoffeShop
 --------
 
 2 . `Installation`
@@ -65,5 +65,5 @@
 6 . Contribute
 ----------
 
-        ## Source Code: https://github.com/sonalvishwakarma/React-native-practice
+        ## Source Code: https://github.com/sonalvishwakarma/CoffeeShop
 
