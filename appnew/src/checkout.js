@@ -52,14 +52,14 @@ export default class Checkout extends Component {
         <View>
           <TextInput underlineColorAndroid='transparent'
             autoCapitalize = 'none'
-            placeholder="full name"
+            placeholder="Full name"
             style = {styles.textInputView}
             value={this.state.fname}
             onChangeText= {this.handleFirstName}
           />
           <TextInput underlineColorAndroid='transparent'
             autoCapitalize = 'none'
-            placeholder="contact no"
+            placeholder="Contact no"
             maxLength={10}
             keyboardType = 'numeric'               
             style = {styles.textInputView}

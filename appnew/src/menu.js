@@ -84,10 +84,10 @@ export default class Menu extends Component {
             </View>
             <View style={{justifyContent : 'flex-end',  width : 180}}>
               <TouchableHighlight>
-                <Text style={styles.mainText}>{v.Item}</Text>
+                <Text style={styles.menuText}>{v.Item}</Text>
               </TouchableHighlight>
                <TouchableHighlight>
-                <Text style={styles.mainText}>{v.Price}</Text>
+                <Text style={styles.menuText}>{v.Price}</Text>
               </TouchableHighlight>
               <TouchableHighlight style={styles.menubutton} onPress = {() => _this.handleAddToCart(v) } underlayColor='midnightblue'>
                 <Text style={styles.menubtnText}>

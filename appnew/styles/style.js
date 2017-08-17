@@ -11,7 +11,7 @@ module.exports = StyleSheet.create ({
     height: undefined,
     backgroundColor:'#cd853f',
   },
-  text : {
+  maintext : {
     fontSize: 35,
     textAlign: 'center',
     margin: 10,
@@ -35,7 +35,7 @@ module.exports = StyleSheet.create ({
     paddingLeft:10,
     alignItems: 'stretch',
   },
-  mainText : {
+  menuText : {
     fontSize: 18,
     textAlign: 'center',
     margin: 5,
@@ -90,28 +90,33 @@ module.exports = StyleSheet.create ({
     color: '#0B5351',
     width : 50
   },
-   button : {
+  button : {
     backgroundColor: '#D3D3D3',
-    margin:5
+    margin:15
   },
   delBtn : {
     backgroundColor: 'transparent',
     color : '#0B5351',
   },
-  btnText: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
+  cartBtn :{
+    flexDirection: 'row', 
+    justifyContent: 'flex-end', 
+    margin: 10
   },
-
+  cartRemoveBtn : {
+    flexDirection: 'row', 
+    justifyContent: 'flex-end', 
+    margin: 10
+  },
   /*checkout*/
 
   checkoutcontainer: {
     flex:1,
+    width: undefined,
+    height: undefined,
     flexDirection:'column',
     backgroundColor: '#cd853f',
-    justifyContent:'flex-start',
+    justifyContent:'center',
   },
   btnText: {
     fontSize: 18,
@@ -149,16 +154,6 @@ module.exports = StyleSheet.create ({
     backgroundColor: '#cd853f',
     justifyContent:'flex-start',
   },
-  button : {
-    backgroundColor: '#D3D3D3',
-    margin:5,
-  },
-  btnText: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#0B5351',
-  },
   view2: {
     backgroundColor: '#0B5351',
     height: 4,
@@ -178,6 +173,12 @@ module.exports = StyleSheet.create ({
     color: '#0B5351',
     width : 50,
   },
+  cartOrderView : {
+    flexDirection : 'row', 
+    borderBottomWidth : 1, 
+    borderColor : "#0B5351", 
+    margin : 10
+  }
 
 }); 
 

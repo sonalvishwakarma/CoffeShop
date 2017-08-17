@@ -67,8 +67,8 @@ export default class MyOrder extends Component {
       return(
         <View key={c.CartId}>
             <View style={{justifyContent : 'flex-start'}}>
-              <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
-                <Text style={styles.text}>{c.ItemName}</Text>
+              <View style={styles.cartOrderView}>
+                <Text style={styles.text}>{ c.ItemName}</Text>
                 <Text style={styles.text}>{ c.Price}</Text>
                 <Text style={styles.text}>{ c.Quantity}</Text>
               </View>
@@ -81,19 +81,18 @@ export default class MyOrder extends Component {
   render() {
     return (
       <View style={styles.orderContainer}>
-        <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
+        <View style={styles.cartOrderView}>
           <View style={styles.userDetailsView}>
             <Text style={styles.text}>OrderNumber - {this.state.orderID}</Text>
           </View>
         </View>
-         <View style={styles.userDetailsView}>
+        <View style={styles.userDetailsView}>
             <Text style={styles.text}>Name - {this.state.name} {", "}
             Delivery address - {this.state.address} {","} Contact - {this.state.contactn}   
             </Text>
           </View>  
-
         <View style={{justifyContent : 'flex-start'}}>
-          <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
+          <View style={styles.cartOrderView}>
             <Text style={styles.text}>Item</Text>
             <Text style={styles.text}>Price</Text>
             <View style={{flexDirection : 'row'}}>

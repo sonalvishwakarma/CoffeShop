@@ -62,11 +62,11 @@ export default class Cart extends Component {
       return(
         <View key={c.CartId}>
             <View style={{justifyContent : 'flex-start'}}>
-              <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
+              <View style={styles.cartOrderView}>
                 <Text style={styles.carttext}>{c.ItemName}</Text>
                 <Text style={styles.carttext}>{ c.Price}</Text>
                 <Text style={styles.carttext}>{ c.Quantity}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                <View style={styles.cartRemoveBtn}>
                   <TouchableHighlight underlayColor='midnightblue' onPress={() => this.removeCartItem(c)}>
                     <Image source={Delete} style={{height : 25, width : 25}}/>     
                   </TouchableHighlight>
@@ -82,7 +82,7 @@ export default class Cart extends Component {
     return (
       <View style={styles.cartcontainer}>
         <View style={{justifyContent : 'flex-start'}}>
-          <View style={{flexDirection : 'row', borderBottomWidth : 1, borderColor : "#0B5351", margin : 10}}>
+          <View style={styles.cartOrderView}>
             <Text style={styles.carttext}>Item</Text>
             <Text style={styles.carttext}>Price</Text>
             <View style={{flexDirection : 'row'}}>
@@ -98,7 +98,7 @@ export default class Cart extends Component {
           </View>
         </View> 
       
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+        <View style={styles.cartBtn}>
           <TouchableHighlight style={styles.button} onPress = {() => Actions.menu() } underlayColor='midnightblue'>
             <Text style={styles.btnText}>
               continue items

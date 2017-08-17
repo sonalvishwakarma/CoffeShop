@@ -10,7 +10,7 @@ export default class Main extends Component {
       <View style={styles.maincontainer}>
         <View>
           <TouchableHighlight onPress={ () => Actions.menu()}>
-            <Text style={styles.text}>cOffeSHop</Text>
+            <Text style={styles.maintext}>cOffEeSHop</Text>
           </TouchableHighlight>
         </View>  
       </View> 
