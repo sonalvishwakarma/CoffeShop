@@ -5,7 +5,6 @@ import Menu from './menu';
 import Cart from './cart';
 import Checkout from './checkout';
 import MyOrder from './orderConfirmation';
-import AutoComplete from './autocomplete';
 
 export default class App extends Component {
   render(){
@@ -17,7 +16,6 @@ export default class App extends Component {
           <Scene key="cart" component={Cart} hideNavBar />
           <Scene key="checkout" component={Checkout} hideNavBar />
           <Scene key="myorder" component={MyOrder} hideNavBar />
-          <Scene key="autocomp" component={AutoComplete} hideNavBar />
         </Scene>
       </Router>
     );
